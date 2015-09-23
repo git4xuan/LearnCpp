@@ -162,7 +162,7 @@ int main()
 
 	//printf("%s");
 	//当使用了string这个的时候，只能用cout的方式进行输出了，这就是所用string的代价
-
+  //
 	return 0 ;
 }
 
