@@ -9,6 +9,7 @@
 #include <iostream>
 #include<stdio.h>
 #include<stdlib.h>
+#include<string>
 using namespace std;
 //  可以通过输入EOF的方式 终止  使用cin。。。速度慢
 /*
@@ -171,6 +172,7 @@ int main()
 }
 */
 //----------------------------------------------
+/*
 typedef int ElemType ;  //使用Typedef进行ElemType。。。
 extern int other ; //只是将其他的地方的定义other用了，这里只是声明other不是定义other
 int j ; //!!!!声明并定义j ，
@@ -203,8 +205,62 @@ int main()
 	return 0 ;
 }
 
+*/
 
+//自定义数据结构
+/*
+struct Sales_data {
+	std::string bookNo;
+	unsigned units_sold = 0 ;
+	double revenue = 0.0 ;
+};
 
+*/
+//-----------------------------------------------------
+//使用string
+/*
+int main(){
+	string s1 ;
+	string s2(s1);
+	string s3 = s2 ;
+	string s4("value");
+	string s5 = "value2" ;
+	string s6(3, 'd');  //分清拷贝初始化和直接初始化的关系
+
+	string word1 , word2 ;
+
+//	while(cin >> word1 ) //一直读，空格结束，直到文件末尾，EOF没有用！！
+	//	cout << "tag "  <<  word1 << endl;
+
+	//   cout << "\12   " << endl;
+	//string 字符串的比较和Y型拉链字符串比较，合并！
+	 // cin >> s5  不能cin 之后没有endl ， 除非使用while的方式
+
+	 //   s5 =  "baodu" + "vallll" + s4  ; //错误，这里不能字符串直接相加，两个qian面的。。需要有s4放在前面作为一个转换的方式来解决
+	    s5 = s4 + "agfas" +  "baodu" + "vallll"; //正确
+
+	while(getline(cin, word2)){ //getline 保留空白符，在换行符凑腿《停止（读进来后丢弃），直接getline，有返回
+		if(!word2.empty())  // line.empty 如果字符串为空，就返回true,此处，这里加上后，直接enter就不会显示tag。
+			cout <<  "tag2 "  << word2 << endl;
+		cout << word2.size() << endl;
+		//有size就不使用int ， 是一个无符号整形数！！
+	}//end while
+	 //直接enter ，还是有tag2出来，后面没有了。
+
+	while(cin >> s5){
+		if(s5 == "book")
+			cout << "book start " << s5 << endl;
+		else if(s5 == "perfume")
+			cout << "perfume sdfsdf "  << s5 << endl;
+		else
+			cout << "Error!" << endl;
+		}
+
+	return 0 ;
+
+}
+
+*/
 
 
 
