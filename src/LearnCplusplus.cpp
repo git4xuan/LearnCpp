@@ -135,7 +135,8 @@ int main()
 	return 0 ;
 }
 */
-
+/*
+ *
 struct Sales_item {
 	int ISBN;
 	int number ;
@@ -143,6 +144,7 @@ struct Sales_item {
 	//string name;  //使用string这个定义，注意！！需要使用std::string
 	std::string name;
 	std::string book;
+	std::string tax;
 	char bingo[101];
 };
 
@@ -154,6 +156,8 @@ int main()
 	item.book = "sadfsadfsadf";  //这是赋值的方法
 	//item.bingo = "rilsdfsdf";
 	//只要是到了结构里面，就不能直接赋值了。
+	//tax 默认为空串
+
 	scanf("%s" , item.bingo);
 	printf("%s" , item.bingo);
 
@@ -165,8 +169,39 @@ int main()
   //
 	return 0 ;
 }
+*/
+//----------------------------------------------
+typedef int ElemType ;  //使用Typedef进行ElemType。。。
+extern int other ; //只是将其他的地方的定义other用了，这里只是声明other不是定义other
+int j ; //!!!!声明并定义j ，
 
+struct Sales_item {
+	ElemType ISBN;
+	int number ;
+	int price;
+};
 
+int main()
+{
+	Sales_item item;
+	int _ ;   // you  can use _
+	int  i = 1012;
+	int &out = i ;
+	//std::cin >> item.ISBN >> _ ;
+	//std::cout << item.ISBN << std::endl;
+	//std::cin >> out ;
+	std::cout  << out << std::endl;
+	i =2342342;//引用的特点
+	std::cout  << out << std::endl;
+
+	int *pi ;// *声明的一部分
+
+	*pi = out ; // *  一个解引用符
+	double *ptr = nullptr;
+	double *ptr2 = NULL; // using cstdlib!!!
+	//赋值永远改变的是等号左边的对象！！
+	return 0 ;
+}
 
 
 
