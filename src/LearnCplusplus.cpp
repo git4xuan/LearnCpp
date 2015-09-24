@@ -10,7 +10,10 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string>
+#include<vector>
+
 using namespace std;
+
 //  可以通过输入EOF的方式 终止  使用cin。。。速度慢
 /*
 int main() {
@@ -262,12 +265,47 @@ int main(){
 
 */
 
+//-----------------------------------vector=================
+
+int main() {
+string val;
+vector<int> ivec;
+vector<string> istring;
+vector<vector<string>> file;
 
 
 
 
+vector<string> s1;
+vector<string> s2(s1);
+vector<string> s5 = {"ballll"};  //至少要用大括号将其括起
+vector<string> s3{3,"fa"};  //注意，这里的可用的部分使用大括号的，不是小括号，小括号是拷贝的时候使用
+vector<string> s4 = {"a,b,b," , "asdfsadf " , "sadf ba"};
 
+//  for(vector<string> i  = 0 ; i < 20 ; i++)
+// 如果不是int的话，要使用专门的iterator才行，int的话，可以直接加到vector<int>的值上
+/*
+for (int i = 0 ; i != 20 ; i++)
+{
+	ivec.push_back(i);
+}
+cout << ivec << endl;
+*/
+cout << "me <<"  << endl;
+cout << s4[0] << endl; //cout 的时候，不能直接cout s4 ， 需要下标输出单个内部的值
+auto e = s4.end();
+for(auto it = s4.begin();it != e ;++it){  //auto 省时省力，，，不过是一个迭代器， 相当于从一个位置移动到另一个位置的方法
+	// < 使用较少，但是 ！= 是所有的定义的数据结构都是会使用
 
+	cout << *it << endl;  // 使用指针的方式才能正确的输出
+}
+for(vector<string>::iterator it = s4.begin();it != s4.end() ;++it){  //auto 省时省力，，，不过是一个迭代器， 相当于从一个位置移动到另一个位置的方法
+	// < 使用较少，但是 ！= 是所有的定义的数据结构都是会使用
+
+	cout << *it << endl;  // 使用指针的方式才能正确的输出
+}
+
+}
 
 
 
