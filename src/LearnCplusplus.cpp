@@ -411,7 +411,7 @@ while(cin >> s  && s != sought){  // 发现想要的值之后，循环终止，�
 
 */
 
-// switch
+// switch 什么的，还有try那些，下面看函数部分。
 
 
 
