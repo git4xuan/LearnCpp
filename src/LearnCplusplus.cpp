@@ -266,7 +266,7 @@ int main(){
 */
 
 //-----------------------------------vector=================
-
+/*
 int main() {
 string val;
 vector<int> ivec;
@@ -284,13 +284,13 @@ vector<string> s4 = {"a,b,b," , "asdfsadf " , "sadf ba"};
 
 //  for(vector<string> i  = 0 ; i < 20 ; i++)
 // 如果不是int的话，要使用专门的iterator才行，int的话，可以直接加到vector<int>的值上
-/*
+
 for (int i = 0 ; i != 20 ; i++)
 {
 	ivec.push_back(i);
 }
 cout << ivec << endl;
-*/
+
 cout << "me <<"  << endl;
 cout << s4[0] << endl; //cout 的时候，不能直接cout s4 ， 需要下标输出单个内部的值
 auto e = s4.end();
@@ -307,28 +307,111 @@ for(vector<string>::iterator it = s4.begin();it != s4.end() ;++it){  //auto 省�
 
 }
 
+*/
+
+//指针数组
+/*
+int main() {
+int ia[3][4] = {{1,2,3,9}, {23 ,24, 243,2} , {2345,25,78,211}};
+
+for (int i = 0 ; i < 3 ; i++)
+	for(int j = 0 ; j < 4 ; j++)
+		cout << ia[i][j] << endl;
+cout << "----"  << endl;
 
 
+for(size_t i = 0 ; i != 3 ; ++i)
+	for(size_t j  = 0 ; j != 4 ; ++j ) {
+		cout << ia[i][j]  << endl;
+	}
+cout <<  "下面的是等价的"  << endl;
+//输出用的col，，这是一个类似迭代器的东西，模式
+for(auto &row : ia)
+	for(auto &col : row ) {
+		cout << col  << endl;
+	}
 
+cout << "使用见了鬼的指针，一定要做，像这个cin cout  多用后就知道方向使用了。。。" << endl;
 
+for(auto p = ia ; p != ia + 3 ; ++p)
+	for(auto q = *p  ; q != *p + 4 ; ++q)
+		cout << *q << endl;
 
+cout << "使用标准库函数begin and end `````"  <<  endl;
+for(auto p = begin(ia) ; p != end(ia) ; ++p)
+	for(auto q = begin(*p)  ; q != end(*p) ; ++q)
+		cout << *q << endl;
+return 0;
 
+}
+*/
 
+//位运算
+/*
+int main() {
+	unsigned long quiz1 = 0 ;
+	unsigned long luz = 1;
 
+	quiz1 |= luz << 27;//等价于下面的
+	quiz1 = quiz1 | luz << 27 ;
+	cout << quiz1 <<endl;
 
+	quiz1 &= ~(luz << 27); //& 与运算 ， ～ 按位取反  ， 结果就是将27的那个变成0  ，其他的不变。
+	bool status27 = quiz1 & (luz << 27);
+	cout << status27 << endl;
 
+	return 0;
 
+}
+*/
+/*
+struct Sales_item {
+	char ISBN[101];
+	double number ;
+	int price;
+	string me ;
+}item;
 
+int main(){
+	Sales_item *p ;
+	cout << sizeof(Sales_item) << "    "
+		<< sizeof(item) << "   "
+	//	<< sizeof(ISBN) << "    "  错误哦，要调用的是item。ISBN
+		<< sizeof(item.ISBN) << "     "
+	//	<< sizeof(item.ISBN[]) << "    " << endl;  错误， 不能有[]
+		<< sizeof(item.ISBN[4]) << "   " << endl;
 
+	cout 	<< sizeof(item.me)  << "     "  << sizeof(item.number) << endl;
+	return 0;
 
+}
+//前四章完毕！！
+*/
+/*
+int main() {
+	const vector<string>  scores = {"F" , "D" , "C" ,"B" , "A" ,"A++"};
+	auto s = 0 ;
+	string letters ;
+	auto  sought = 999;  //使用auto需要添加需要的初始值
+while(cin >> s  && s != sought){  // 发现想要的值之后，循环终止，否则就是看。。
+//	; //空语句
+	if(s < 60 )
+		letters = scores[0];
+	else{
+		letters = scores[(s - 50)/10];
+		if(s % 10 > 7)  //这里注意了。。。。没有括号，结果F的部分也苦啦啦啦。
+			letters += '+' ; //注意这里的string 添加++ 需要使用的是单引号
+		else if(s % 10 < 3)
+			letters += '-';
+	}
+	cout << letters << endl;
+}
 
+}
 
+*/
 
-
-
-
-
-
+// switch
 
 
 
