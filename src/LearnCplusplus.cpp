@@ -444,7 +444,8 @@ int main() {
 	return 0 ;
 }
 */
-
+/*
+//-------------------------------------------------
 // 改进的Sales-data类
 struct Sales_data {
 
@@ -497,10 +498,17 @@ Sales_data add(const Sales_data &lhs , const Sales_data &rhs){
 	sum.combine(rhs);
 	return sum;
 }
+*/
 
+//-----------------------------------------
 
-
-
+/*
+ * 构造函数， 构造函数没有返回类型， 构造函数和类名相同，不能被声明为const，
+ * 构造过程中可以对其写值
+ * 使用vector或者string能够避免分配和释放内存带来的复杂性！！！！
+ *
+ *
+ */
 
 
 
