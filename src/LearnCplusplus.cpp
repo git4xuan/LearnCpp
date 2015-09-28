@@ -412,6 +412,40 @@ while(cin >> s  && s != sought){  // 发现想要的值之后，循环终止，�
 */
 
 // switch 什么的，还有try那些，下面看函数部分。
+/*
+int fact(int val) {
+		int ret = 1;
+		while(val > 1){
+			//后置算法，和ret *= val--; 等价
+			ret *= val;
+			val--;
+		}
+		return ret;
+	}//fact
+int main() {
+
+	int t = 5;
+	cout << fact(6)  << endl;
+	return 0;
+
+}
+*/
+
+size_t count_calls(){
+	static size_t ctr = 0;//static
+	++ctr;
+	return ctr;
+}
+int main() {
+	for(size_t i =0 ; i < 10 ; ++i){
+		cout << count_calls() <<endl;
+		//output 1 2 3 4 5 6 7 8 9 10
+	}
+	return 0 ;
+}
+
+
+
 
 
 
