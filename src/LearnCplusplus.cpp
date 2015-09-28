@@ -465,18 +465,38 @@ struct Sales_data {
 		else
 			return 0;
 	}
+	//这三个可以写在后面，编译时进行的是两步编译，先编译值，再编译函数！！！
+		std::string bookNo;//书的编号
+		unsigned units_sold = 0;  // 卖出的数量
+		double revenue = 0.0;  //财务收入
 
 };
-   //这三个可以写在后面，编译时进行的是两步编译，先编译值，再编译函数！！！
-	std::string bookNo;//书的编号
-	unsigned units_sold = 0;  // 卖出的数量
-	double revenue = 0.0;  //财务收入
-
-Sales_data add(const Sales_data& , const Sales_data&);
-std::ostream &print(std::ostream& , const Sales_data&);
-std::istream &read(std::istream& , Sales_data&);
 
 
+//Sales_data add(const Sales_data& , const Sales_data&);
+//std::ostream &print(std::ostream& , const Sales_data&);
+//std::istream &read(std::istream& , Sales_data&);
+
+
+//接受了IO类型的引用  ， 由于IO类属于不能被拷贝的类型， 于是只能使用引用来进行传递，
+istream &read(istream &is , Sales_data &item){
+	double price = 0;
+	is >> item.bookNo >> item.units_sold >> price ;
+	item.revenue = price * item.units_sold;
+	return is;
+}
+
+ostream &print (ostream &os , const Sales_data &item ){
+	os << item.isbn()  << "  "  << item.units_sold << "   "
+			<< item.revenue  << "   " << item.avg_price()  ;
+	return os;
+}
+
+Sales_data add(const Sales_data &lhs , const Sales_data &rhs){
+	Sales_data  sum = lhs;
+	sum.combine(rhs);
+	return sum;
+}
 
 
 
