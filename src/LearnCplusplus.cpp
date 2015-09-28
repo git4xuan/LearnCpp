@@ -430,7 +430,7 @@ int main() {
 
 }
 */
-
+/*
 size_t count_calls(){
 	static size_t ctr = 0;//static
 	++ctr;
@@ -443,7 +443,38 @@ int main() {
 	}
 	return 0 ;
 }
+*/
 
+// 改进的Sales-data类
+struct Sales_data {
+
+	std::string isbn() const  //std::string Sales_data::isbn(const Sales_data *const this)
+	//  Sales_data::isbn(&total);传递了total的地址
+	{return  bookNo;}
+	//Sales_data& combine(const Sales_data&);
+	// 等价于  Sales_data& Sales_data::combine(const Sales_data &rhs)
+	Sales_data& combine(const Sales_data &rhs){
+		units_sold += rhs.units_sold;  //this->units_sold
+		revenue += rhs.revenue;  //this.revenue
+		return *this;  //返回一个Sales_data  参数
+	}
+	double avg_price() const
+	{
+		if(units_sold)
+			return revenue/units_sold;
+		else
+			return 0;
+	}
+
+};
+   //这三个可以写在后面，编译时进行的是两步编译，先编译值，再编译函数！！！
+	std::string bookNo;//书的编号
+	unsigned units_sold = 0;  // 卖出的数量
+	double revenue = 0.0;  //财务收入
+
+Sales_data add(const Sales_data& , const Sales_data&);
+std::ostream &print(std::ostream& , const Sales_data&);
+std::istream &read(std::istream& , Sales_data&);
 
 
 
