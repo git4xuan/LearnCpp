@@ -6,7 +6,7 @@
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
-#include <iostream>
+#include<iostream>
 #include<stdio.h>
 #include<stdlib.h>
 #include<string>
@@ -506,10 +506,359 @@ Sales_data add(const Sales_data &lhs , const Sales_data &rhs){
  * 构造函数， 构造函数没有返回类型， 构造函数和类名相同，不能被声明为const，
  * 构造过程中可以对其写值
  * 使用vector或者string能够避免分配和释放内存带来的复杂性！！！！
- *
+ *class和struct 仅仅在默认的访问权限上表示不同！！！ class 偏 private ， struct 偏 public
+ *class和struct
  *
  */
+/*
+class Sales_data{
+public :
+	Sales_data() = default ;
+	Sales_data(const std::string &s , unsigned n , double p):
+		bookNo(s) , units_sold(n) , revenue(p*n) {   }
+	Sales_data(const std::string &s):bookNo(s) {   }
+	Sales_data(std::istream&) ;
+	std::string isbn() const {return bookNo ;}
+	Sales_data &combine(const Sales_data&) ;
+private:
+	double avg_price() const
+	{return units_sold ? revenue/units_sold : 0 ; }
+	std::string bookNo;
+	unsigned units_sold = 0;
+	double revenue = 0.0;
 
+friend	istream &read(istream &is , Sales_data &item){
+		double price = 0;
+		is >> item.bookNo >> item.units_sold >> price ;
+		item.revenue = price * item.units_sold;
+		return is;
+	}
+
+friend	ostream &print (ostream &os , const Sales_data &item ){
+		os << item.isbn()  << "  "  << item.units_sold << "   "
+				<< item.revenue  << "   " << item.avg_price()  ;
+		return os;
+	}
+
+friend	Sales_data add(const Sales_data &lhs , const Sales_data &rhs){
+		Sales_data  sum = lhs;
+		sum.combine(rhs);
+		return sum;
+
+
+
+};
+*/
+
+//C++的书籍！！！！
+/*
+int main() {
+	double in ;
+	double sum;
+	//cout << sum << endl;
+	while(cin >> in){
+		sum += in;
+		cout << sum << endl;
+	}
+	cout << "end "  << endl;
+
+}
+*/
+int main() {
+unsigned u = 075 , u2 = 42 ;
+//wchar_t me = 'a' ;
+
+cout << u2 - u << endl;
+cout << u - u2 << endl;
+return 0;
+
+}
+
+
+//------------------------------------------------------------------------------------------------------------
+//============================================================================
+// Name        : PracticeC++1-20.cpp
+// Author      : hrl
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+//#include "Sales_item.h"
+
+/*
+int main() {
+
+	Sales_item book;
+	std::cout << "输入销售记录：  "
+			<<  std::endl;
+	while(std::cin >> book ) {
+		std::cout << "ISBN , 售出数  销售额  平均售价为:  "  << book  << std::endl;
+	}
+	return 0;
+}
+*/
+/*
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+	string word , line;
+	cout << " 1按词读取， 2 为 整行读取  " <<  endl;
+	char ch ;
+
+	cin >> ch;
+	if(ch == '1' ) {
+		cout << "输入字符串：   Welcome to C++  family  "  << endl;
+		cin >> word;
+		cout <<  word << endl;
+		return 0 ;
+	}
+	cin.clear();
+	cin.sync();
+	if(ch == '2')  //字符串的输入！！
+	{
+		getline(cin  ,line)  ;
+		cout << line << endl;
+		return 0 ;
+	}
+	cout << "输入有误";
+	return -1;
+
+}
+
+*/
+
+#include<iostream>
+#include <string>
+#include <vector>
+#include<cstring>
+#include<cstdlib>
+#include<ctime>
+#include<stdexcept>
+using namespace std;
+/*
+int main() {
+	string s , result;
+	char confirm = 'y';
+	cout << "输入第一个字符串！！"  <<  endl;
+
+	while(cin >> s){
+	result +=  s;  //result.size()
+	cout << "是否接着输入(y or n)" << endl;
+	cin >> confirm  ;
+	if(confirm == 'y'  ||  confirm == 'Y'){
+		cout << "The next  is" << endl;
+	}else
+		break;
+  }
+
+	cout << "输出拼接～～～" << result << endl;
+	return 0 ;
+}
+*/
+/*
+int main() {
+	vector<string>  vstring;
+	string s , result;
+	char confirm = 'y';
+	cout << "vector部分输入第一个字符串！！"  <<  endl;
+
+	while(cin >> s){
+	vstring.push_back(s);
+	//result.size()
+	cout << "是否接着输入(y or n)" << endl;
+	cin >> confirm  ;
+	if(confirm == 'y'  ||  confirm == 'Y'){
+		cout << "The next  is" << endl;
+	}else
+		break;
+  }
+
+	//cout << "输出拼接～～～" << result << endl;
+	for(auto  mem : vstring)
+		cout << mem << "   ";
+	for(auto it = vstring.cbegin() ;it != vstring.cend() ; it ++)
+		cout << *it << endl;
+	for(auto it2 = vstring.cbegin() ; it2 != vstring.cend() ; it2 ++)
+		cout << *it2 << endl;
+
+	cout << endl;
+	return 0 ;
+}
+*/
+
+//3.24
+/*
+int main() {
+	vector<int>  vInt ;
+	int iVal;
+	cout << "输入一组数字"  << endl;
+	while (cin >> iVal)  {
+		vInt.push_back(iVal);
+		if(vInt.cbegin() == vInt.cend()){
+			cout << "无元素"  << endl;
+			return -1;
+		}
+	}
+	cout << "相邻的和" << endl;
+	for(auto it = vInt.begin()  ; it != vInt.end() ; ++it){
+		cout << (*it + *(++it))  << "   ";
+		if((it - vInt.cbegin() + 1)  % 10 == 0 )
+			cout << endl;
+	}
+	if(vInt.size() % 2 != 0)
+		cout << *(vInt.cend() - 1);
+
+	return 0 ;
+}
+
+*/
+
+//vector 的复制的部分
+/*
+int main() {
+	const int sz = 10 ;
+	vector<int>  vInt , vInt2;
+	for(int i = 0 ; i != sz ; ++i)
+		vInt.push_back(i);
+	for(int j = 0 ; j != sz ; ++j)
+		vInt2.push_back(vInt[j]);
+	for(auto it = vInt2.begin() ; it != vInt2.end() ; it++)
+		cout << *it  << "   "   << endl;  //这就是下面的为什么两行写的原因
+	for(auto val : vInt2)
+		cout << val << "   ";
+	cout << endl;
+
+	return 0 ;
+}
+*/
+
+//试下使用数组的部分的begin和end
+/*
+int main()  {
+	const int sz = 10 ;
+	int ap[sz]  , i = 0;
+	for(i = 0 ; i != sz ;i++)
+		ap[i] = i;
+	cout << "ori   is "  << endl;
+	for(auto val : ap)
+		cout << val << "   ";
+	cout << endl;
+	int *p = begin(ap) ;
+	while(p != end(ap)){
+		*p = 0 ;
+		p++;
+	}
+	cout << "after is "  << endl;
+	for(auto val : ap)
+		cout << val << "   ";
+	cout << endl;
+	return 0 ;
+}
+
+*/
+/*
+int main() {
+	char str1[]  =  "Welcome to ";
+	char str2[]  =  "C++ family ";
+
+	char result[strlen(str1) + strlen(str2) - 1 ];
+	strcpy(result , str1);
+	strcat (result , str2);
+	cout << "str1 is   "  << str1 << endl;
+	cout << "str2 is   "  << str2 << endl;
+	cout << "result is   "  << result << endl;
+	return 0 ;
+}
+
+*/
+//using int_array = int[4];
+/*
+int main() {
+	int ia[3][4]  = { 0, 1 ,2,3,4,5,6,7,8,9,10,11};
+	cout << "1 way  "  << endl;
+	//for(int (&row)[4]  : ia){
+	//  for(int_array &row : ia) {
+	for(auto &row : ia){
+		for( int &col : row)
+			cout << col  << "   ";
+		cout << endl;
+	}
+
+	cout << "2  way   "  << endl;
+	for(int i = 0 ; i != 3 ; i++)
+	{
+		for(int j = 0 ; j != 4 ; j++)
+			cout << ia[i][j]  << "    "  ;
+		cout << endl;
+	}
+	cout << "3 way    "   << endl;
+	//for(int (*p)[4]  = ia ; p != ia + 3; p++)
+	//for(int_array *p = ia  ; p != ia +  3  ; p++)
+	for( auto *p = ia ; p != ia + 3 ; p++)
+	{
+		for(int *q = *p ; q != *p + 4 ; q++)
+			cout << *q << "    ";
+		cout << endl;
+	}
+	return 0;
+}
+
+*/
+
+
+//5.25
+/*
+int main() {
+	cout << "input words as ival1 ival2   " << endl;
+	int ival1 , ival2 ;
+	while(cin >> ival1 >> ival2 )
+	{
+		try {
+			if(ival2 == 0 ){
+				throw runtime_error("除数不能为零");
+			}
+			cout << "answer -----"  << ival1 / ival2 << endl;
+		}catch(runtime_error  err) {
+			cout << err.what() << endl;
+			cout << "(y or no)   --- "  << endl;
+			char ch;
+			cin >> ch ;
+			if(ch != 'y'  && ch != 'Y')
+				break;
+		}
+	}
+	return 0 ;
+}
+*/
+/*
+void SwapPointer1(int *&p , int *&q ) {
+	int *tmp = *q  ;
+	p = q ;
+	q = tmp;
+}
+void SwapPointer2(int *p , int *q ) {
+	int *tmp = *p  ;
+	p = q ;
+	q = tmp;
+}
+void SwapPointer3(int *p , int *q ) {
+	int *tmp = *p;
+	*p = *q ;
+	*q = *tmp;
+}
+*/
+
+int main(int argc , char **argv) {
+	string str ;
+	for(int i = 0; i != argc ; ++i){
+		str += argv[i];
+	}
+		cout << str << endl;
+		return 0 ;
+}
 
 
 
